@@ -1,10 +1,113 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=https://blog.syzhong.com" />
-    <title>跳转中...</title>
-  </head>
-  <body>
-    <p>如果没有跳转，请点击 <a href="https://blog.syzhong.com">这里</a>。</p>
-  </body>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="3; url=https://blog.syzhong.com">
+  <title>正在跳转到博客...</title>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3f37c9;
+      --bg-color: #f8f9fa;
+      --text-color: #333;
+    }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    h1 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .loader {
+      width: 50px;
+      height: 50px;
+      margin: 2rem auto;
+      border: 5px solid rgba(67, 97, 238, 0.2);
+      border-top-color: var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .countdown {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>正在前往博客...</h1>
+    <p>您将在 <span id="count">2</span> 秒后自动跳转</p>
+    <div class="loader"></div>
+    <p>如果跳转未自动进行，请点击下方按钮</p>
+    <a href="https://blog.syzhong.com" class="btn">立即访问</a>
+    <div class="countdown">页面跳转中，请勿关闭此窗口</div>
+  </div>
+
+  <script>
+    // 倒计时功能
+    let seconds = 2;
+    const countdownElement = document.getElementById('count');
+    
+    const timer = setInterval(() => {
+      seconds--;
+      countdownElement.textContent = seconds;
+      
+      if (seconds <= 0) {
+        clearInterval(timer);
+      }
+    }, 1000);
+  </script>
+</body>
 </html>
